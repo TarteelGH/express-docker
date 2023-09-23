@@ -30,3 +30,12 @@ jobs:
       run: docker build . --file Dockerfile --tag ghcr.io/tarteelgh/express-docker:${{ steps.image_version.outputs.gitsha }}
     - name: Publish docker image
       run: docker push ghcr.io/tarteelgh/express-docker:${{ steps.image_version.outputs.gitsha }}
+    - name: configure docker host
+      uses: tarteelgh/configure-docker-host@v1
+      with:
+        host:  54.158.234.201
+        user: github
+        ssh-private-key: ${{ secrets.DEPLOYMENT_KEY }}
+    - name: deploy
+      run: docker compose -f docker-compose-pord.yml up -d
+  
