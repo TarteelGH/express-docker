@@ -4,6 +4,8 @@ FROM node:20-alpine
 # Set the current working directory in the container
 WORKDIR /usr/app
 
+RUN apk add curl
+
 # Copy only two files to the image
 COPY package.json package-lock.json ./
 
