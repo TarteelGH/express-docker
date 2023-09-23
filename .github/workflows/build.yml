@@ -41,5 +41,5 @@ jobs:
       env: 
        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
     - name: print logs
-    if: always()
+    if: always() # This step will be executed even if previous steps fails
     run: docker compose logs
